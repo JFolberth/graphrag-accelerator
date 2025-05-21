@@ -26,7 +26,7 @@ param kind string = 'StorageV2'
 param minimumTlsVersion string = 'TLS1_2'
 param containers array = []
 
-resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+resource storage 'Microsoft.Storage/storageAccounts@2024-01-01' = {
   name: name
   location: location
   tags: tags

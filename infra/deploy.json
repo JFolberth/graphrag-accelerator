@@ -1,0 +1,99 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "resourceGroupName": {
+      "value": "rg-ragtest-wus"
+    },
+    "resourceBaseName": {
+      "value": "ragtest"
+    },
+    "location": {
+      "value": "westus"
+    },
+    "apiPublisherName": {
+      "value": "Microsoft"
+    },
+    "apiPublisherEmail": {
+      "value": "publisher@microsoft.com"
+    },
+    "restoreAPIM": {
+      "value": false
+    },
+    "apimTier": {
+      "value": "Developer"
+    },
+    "apimName": {
+      "value": ""
+    },
+    "deployAcr": {
+      "value": false
+    },
+    "existingAcrLoginServer": {
+      "value": ""
+    },
+    "acrTokenName": {
+      "value": ""
+    },
+    "acrTokenPassword": {
+      "value": ""
+    },
+    "graphragImageName": {
+      "value": "graphrag"
+    },
+    "graphragImageVersion": {
+      "value": "latest"
+    },
+    "deployAoai": {
+      "value": true
+    },
+    "existingAoaiId": {
+      "value": ""
+    },
+    "llmModelName": {
+      "value": "gpt-4o"
+    },
+    "llmModelDeploymentName": {
+      "value": "gpt-4o"
+    },
+    "llmModelVersion": {
+      "value": "2024-08-06"
+    },
+    "llmModelQuota": {
+      "value": 1
+    },
+    "embeddingModelName": {
+      "value": "text-embedding-ada-002"
+    },
+    "embeddingModelDeploymentName": {
+      "value": "text-embedding-ada-002"
+    },
+    "embeddingModelVersion": {
+      "value": "2"
+    },
+    "embeddingModelQuota": {
+      "value": 1
+    },
+    "aksNamespace": {
+      "value": "graphrag"
+    },
+    "managedAppStorageAccountName": {
+      "value": ""
+    },
+    "managedAppStorageAccountKey": {
+      "value": ""
+    },
+    "enablePrivateEndpoints": {
+      "value": true
+    },
+    "utcString": {
+      "value": "<utc-now>"
+    },
+    "grantDevAccess": {
+      "value": true
+    },
+    "developerPrincipalId": {
+      "value": "dac62948-a373-48bc-9e5c-e8459249bf3e"
+    }
+  }
+}

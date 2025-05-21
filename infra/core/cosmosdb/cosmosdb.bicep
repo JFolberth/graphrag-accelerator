@@ -12,7 +12,7 @@ param publicNetworkAccess string = 'Disabled'
 
 var maxThroughput = 1000
 
-resource cosmosDb 'Microsoft.DocumentDB/databaseAccounts@2024-11-15' = {
+resource cosmosDb 'Microsoft.DocumentDB/databaseAccounts@2025-04-15' = {
   name: cosmosDbName
   location: location
   tags: {
@@ -74,7 +74,7 @@ resource cosmosDb 'Microsoft.DocumentDB/databaseAccounts@2024-11-15' = {
 // create a single database that is used to maintain state information for graphrag indexing
 // NOTE: The current CosmosDB role assignments are not sufficient to allow the aks workload identity to create databases and containers so we must do it in bicep at deployment time.
 // TODO: Identify and assign appropriate RBAC roles that allow the workload identity to create new databases and containers instead of relying on this bicep implementation.
-resource graphragDatabase 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2024-11-15' = {
+resource graphragDatabase 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@2025-04-15' = {
   parent: cosmosDb
   name: 'graphrag'
   properties: {
@@ -89,7 +89,7 @@ resource graphragDatabase 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases@20
   }
 }
 
-resource jobsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2024-11-15' = {
+resource jobsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2025-04-15' = {
   parent: graphragDatabase
   name: 'jobs'
   properties: {
@@ -127,7 +127,7 @@ resource jobsContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/conta
   }
 }
 
-resource containerStoreContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2024-11-15' = {
+resource containerStoreContainer 'Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers@2025-04-15' = {
   parent: graphragDatabase
   name: 'container-store'
   properties: {

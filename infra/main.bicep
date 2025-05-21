@@ -140,6 +140,12 @@ param managedAppStorageAccountKey string = ''
 @description('Whether to use private endpoint connections or not.')
 param enablePrivateEndpoints bool = true
 
+@description('Whether to grant developer access to Azure resources (RBAC assignments).')
+param grantDevAccess bool = false
+
+@description('ObjectId of the developer to grant RBAC access. Set to your user objectId.')
+param developerPrincipalId string = ''
+
 @description('Role definitions for various RBAC roles that will be assigned at deployment time. Learn more: https://learn.microsoft.com/en-us/azure/role-based-access-control/built-in-roles')
 var roles = {
   acrPull: resourceId(
@@ -253,7 +259,7 @@ module aks 'core/aks/aks.bicep' = {
     location: location
     graphragVMSize: 'standard_d8s_v5' // 8 vcpu, 32 GB memory
     graphragIndexingVMSize: 'standard_e8s_v5' // 8 vcpus, 64 GB memory
-    clusterAdmins: [deployer().objectId]
+    clusterAdmins: [developerPrincipalId]
     logAnalyticsWorkspaceId: log.outputs.id
     subnetId: vnet.outputs.aksSubnetId
     privateDnsZoneName: privateDnsZone.outputs.name
@@ -462,7 +468,17 @@ module deploymentScript 'core/scripts/deployment-script.bicep' = if (!empty(mana
   }
 }
 
-output deployer_principal_id string = deployer().objectId
+module devRBAC 'RBAC.bicep' = if (grantDevAccess && !empty(developerPrincipalId)) {
+  name: 'developer-access-rbac'
+  params: {
+    principalId: developerPrincipalId
+    storageAccountName: storage.outputs.name
+    cosmosDbName: cosmosdb.outputs.name
+    searchServiceName: aiSearch.outputs.name
+  }
+}
+
+output deployer_principal_id string = developerPrincipalId
 output azure_location string = location
 output azure_tenant_id string = tenant().tenantId
 output azure_ai_search_name string = aiSearch.outputs.name

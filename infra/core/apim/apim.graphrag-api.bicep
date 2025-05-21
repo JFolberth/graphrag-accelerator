@@ -5,7 +5,7 @@ param apiManagementName string
 param name string
 param backendUrl string
 
-resource api 'Microsoft.ApiManagement/service/apis@2023-09-01-preview' = {
+resource api 'Microsoft.ApiManagement/service/apis@2024-05-01' = {
   name: '${apiManagementName}/${name}'
   properties: {
     displayName: 'GraphRAG'

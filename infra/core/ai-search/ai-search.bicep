@@ -10,7 +10,7 @@ param location string = resourceGroup().location
 @allowed(['enabled', 'disabled'])
 param publicNetworkAccess string = 'enabled'
 
-resource search 'Microsoft.Search/searchServices@2024-06-01-preview' = {
+resource search 'Microsoft.Search/searchServices@2025-02-01-Preview' = {
   name: name
   location: location
   sku: {

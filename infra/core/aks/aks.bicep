@@ -53,11 +53,11 @@ param privateDnsZoneName string
 @description('Array of object ids of admins that will have admin control over the cluster')
 param clusterAdmins array = []
 
-resource privateDnsZone 'Microsoft.Network/privateDnsZones@2020-06-01' existing = {
+resource privateDnsZone 'Microsoft.Network/privateDnsZones@2024-06-01' existing = {
   name: privateDnsZoneName
 }
 
-resource aks 'Microsoft.ContainerService/managedClusters@2024-09-02-preview' = {
+resource aks 'Microsoft.ContainerService/managedClusters@2025-03-01' = {
   name: clusterName
   location: location
   identity: {
@@ -175,11 +175,10 @@ resource aks 'Microsoft.ContainerService/managedClusters@2024-09-02-preview' = {
         workload: 'graphrag'
       }
       type: 'VirtualMachineScaleSets'
-    }
-  }
+    }  }
 }
 
-resource aksManagedAutoUpgradeSchedule 'Microsoft.ContainerService/managedClusters/maintenanceConfigurations@2024-09-02-preview' = {
+resource aksManagedAutoUpgradeSchedule 'Microsoft.ContainerService/managedClusters/maintenanceConfigurations@2025-03-01' = {
   parent: aks
   name: 'aksManagedAutoUpgradeSchedule'
   properties: {
@@ -196,7 +195,7 @@ resource aksManagedAutoUpgradeSchedule 'Microsoft.ContainerService/managedCluste
   }
 }
 
-resource aksManagedNodeOSUpgradeSchedule 'Microsoft.ContainerService/managedClusters/maintenanceConfigurations@2024-09-02-preview' = {
+resource aksManagedNodeOSUpgradeSchedule 'Microsoft.ContainerService/managedClusters/maintenanceConfigurations@2025-03-01' = {
   parent: aks
   name: 'aksManagedNodeOSUpgradeSchedule'
   properties: {

@@ -10,12 +10,12 @@ param location string = resourceGroup().location
 @description('federated name: FederatedIdentityCredentialProperties.  See https://learn.microsoft.com/en-us/azure/templates/microsoft.managedidentity/userassignedidentities/federatedidentitycredentials?pivots=deployment-language-bicep#federatedidentitycredentialproperties')
 param federatedCredentials object = {}
 
-resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
   name: name
   location: location
 }
 
-resource federatedCredentialResources 'Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials@2023-01-31' = [
+resource federatedCredentialResources 'Microsoft.ManagedIdentity/userAssignedIdentities/federatedIdentityCredentials@2024-11-30' = [
   for federatedCredential in items(federatedCredentials): {
     name: federatedCredential.key
     parent: identity

@@ -48,11 +48,11 @@ var aksContributorRoleDefinitionId = resourceId(
   'ed7f3fbd-7b88-4dd4-9017-9adb7ce333f8' // Azure Kubernetes Service Contributor Role
 )
 
-resource aksCluster 'Microsoft.ContainerService/managedClusters@2024-09-02-preview' existing = {
+resource aksCluster 'Microsoft.ContainerService/managedClusters@2025-03-01' existing = {
   name: aks_name
 }
 
-resource scriptIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
+resource scriptIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities@2024-11-30' = {
   name: 'deployment-script-identity-${uniqueString(resourceGroup().id)}'
   location: location
 }
@@ -91,7 +91,7 @@ resource aksContributorRoleAssignment 'Microsoft.Authorization/roleAssignments@2
 }
 
 // Must use module version 2020-10-01 and azCliVersion = v2.7.0 to have curl pre-installed
-resource deploymentScript 'Microsoft.Resources/deploymentScripts@2020-10-01' = {
+resource deploymentScript 'Microsoft.Resources/deploymentScripts@2023-08-01' = {
   name: 'deployment-script-deployment'
   location: location
   kind: 'AzureCLI'

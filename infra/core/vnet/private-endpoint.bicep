@@ -14,7 +14,7 @@ param privateEndpointName string
 param groupId string
 param location string = resourceGroup().location
 
-resource privateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
+resource privateEndpoint 'Microsoft.Network/privateEndpoints@2024-10-01' = {
   name: privateEndpointName
   location: location
   properties: {
@@ -29,11 +29,10 @@ resource privateEndpoint 'Microsoft.Network/privateEndpoints@2024-05-01' = {
     ]
     subnet: {
       id: subnetId
-    }
-  }
+    }  }
 }
 
-resource privateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2024-05-01' = {
+resource privateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2024-10-01' = {
   name: groupId
   parent: privateEndpoint
   properties: {

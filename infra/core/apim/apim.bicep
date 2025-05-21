@@ -69,11 +69,10 @@ resource publicIp 'Microsoft.Network/publicIPAddresses@2024-01-01' = {
     publicIPAddressVersion: 'IPv4'
     dnsSettings: {
       domainNameLabel: dnsLabelPrefix
-    }
-  }
+    }  }
 }
 
-resource apiManagementService 'Microsoft.ApiManagement/service@2023-09-01-preview' = {
+resource apiManagementService 'Microsoft.ApiManagement/service@2024-05-01' = {
   name: apiManagementName
   location: location
   sku: {
@@ -123,7 +122,7 @@ resource apimLogger 'Microsoft.ApiManagement/service/loggers@2024-06-01-preview'
   }
 }
 
-resource apimDiagnostics 'Microsoft.ApiManagement/service/diagnostics@2023-09-01-preview' = {
+resource apimDiagnostics 'Microsoft.ApiManagement/service/diagnostics@2024-05-01' = {
   name: 'applicationinsights'
   parent: apiManagementService
   properties: {

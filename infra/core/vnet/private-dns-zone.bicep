@@ -7,7 +7,7 @@ param name string
 @description('The name of the virtual networks the DNS zone should be associated with.')
 param vnetName string
 
-resource vnet 'Microsoft.Network/virtualNetworks@2024-05-01' existing = {
+resource vnet 'Microsoft.Network/virtualNetworks@2024-10-01' existing = {
   name: vnetName
 }
 
